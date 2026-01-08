@@ -1,7 +1,7 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import authService from './authService'
 
-const user = JSON.parse(localStorage.getItem('eco-user'))
+const user = JSON.parse(localStorage.getItem('shopifyeco-user'))
 
 const initialState = {
     user : user ? user : null,
@@ -15,7 +15,7 @@ export const register = createAsyncThunk('auth/register', async(data, thunkAPI)=
     try {
         return await authService.regUser(data)
     } catch (error) {
-        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString() || error.Error
         return thunkAPI.rejectWithValue(message) 
     }
 })

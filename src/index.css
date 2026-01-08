@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 * {
   margin: 0;
   padding: 0;
@@ -57,18 +62,6 @@ header ul {
   gap: 20px;
 }
 
-.logo-text {
-  font-size: 23px;
-  margin-right: 25px;
-}
-
-.header-list-large {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-
 .float-button {
   height: 60px;
   width: 60px;
@@ -112,104 +105,6 @@ header ul {
 
 .brand-detail p{
   font-size: 16px;
-}
-
-.login-form {
-  padding: 25px;
-}
-
-.login-form h2 {
-  text-align: center;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-  gap: 20px;
-}
-
-.form-control {
-  padding: 12px;
-  width: 50%;
-}
-
-.form-group button {
-  padding: 12px;
-  width: 35%;
-  background-color: black;
-  color: white;
-  font-weight: bold;
-  font-size: 0.92rem;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.form-group button:hover {
-  background-color: rgb(36, 36, 36);
-}
-
-.hamburger-open {
-  display: none;
-  flex-direction: column;
-  gap: 2px;
-  align-items: center;
-  cursor: pointer;
-}
-
-.hamburger-open span {
-  height: 2px;
-  background-color: black;
-  width: 15px;
-}
-
-.hamburger-close {
-  display: none;
-  flex-direction: column;
-  gap: 3px;
-  align-items: center;
-  cursor: pointer;
-}
-
-.hamburger-close span {
-  height: 2px;
-  background-color: black;
-  width: 15px;
-}
-
-.hamburger-close span:nth-child(1) {
-  transform: rotate(45deg) translate(-5px, -2px);
-}
-
-.hamburger-close span:nth-child(2) {
-  transform: rotate(315deg) translate(5px, -9px);
-
-}
-
-.header-list-small-modal {
-  position: absolute;
-  top: 82px;
-  width: 90vw;
-  left: -600px;
-  z-index: 99;
-  height: 100vh;
-  background-color: rgb(247, 244, 244);
-  border-right: 1px solid lightgray;
-  transition: 1s ease-out;
-}
-
-.header-list-small-modal ul {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 15px 25px;
-}
-
-.header-list-small-modal ul li {
-  font-size: 21px;
-  letter-spacing: 2px;
 }
 
 .form-message {
@@ -476,83 +371,42 @@ footer button {
 }
 
 @media only screen and (max-width:700px) {
-
- footer .footerOptions {
+  footer .footerOptions {
     flex-direction: column;
     align-items: flex-start;
   }
-
-.filters-device{
-  display: none;
-}
-
-.footer-form-group{
+  .filters-device{
+    display: none;
+  }
+  .footer-form-group{
     width: 100%;
   }
- footer .quick-links{
+  footer .quick-links{
     align-items: flex-start;
   }
-
   .email-subcription{
     align-items: center;
   }
-
   .contact-form input, textarea {
     width: 99%;
   }
-
   .contact h1 {
     margin-left: 0;
   }
-
   .contact-form-btn button {
     margin-left: 0;
     padding: 7px;
   }
-
-  .hamburger-open {
-    display: flex;
-  }
-
-  .header-list-large {
-    display: none;
-  }
-
-  .logo-text {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  header {
-    padding: 30px;
-  }
-
-
   .form-control {
     width: 70%;
   }
 }
 
 @media only screen and (min-width:701px) {
-  .header-list-small-modal {
-    display: none;
-  }
-
-  .hamburger-close {
-    display: none;
-  }
-
-  .hamburger-open {
-    display: none;
-  }
-
   .filter-tab{
     justify-content: flex-end;
   }
-
   .filter-desktop{
     display: none;
   }
-
 }
