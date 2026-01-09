@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart, deleteCart, getCart, reset } from '../features/cart/cartSlice';
 import Loader from '../components/Loader';
@@ -34,10 +34,12 @@ function Cart() {
 
   const { cart, isLoading, isSuccess, isError } = useSelector((state) => state.cart);
 
-  const handleRemoveFromCart = (item) => {
+  const handleRemoveFromCart = useCallback((item) => {
+    // Optimistically update UI
     setCartItems((prevItems) => prevItems.filter((cartItem) => cartItem._id !== item._id));
-    dispatch(removeFromCart({ email, code: item.code }))
-  }
+    // Dispatch action to backend
+    dispatch(removeFromCart({ code: item.code, email }));
+  }, [dispatch, email]);
 
   useEffect(() => {
     if (isSuccess && cart) {
