@@ -1,4 +1,4 @@
 
-const uri = 'http://13.62.46.206:3000'
+const uri = 'https://3aafd113f5c0.ngrok-free.app'
 
 export default uri
