@@ -1,7 +1,8 @@
 import axios from "axios";
+import uri from "../config";
 
 const getAllProducts =  async(data) => {
-    const response = await axios.post('https://573e523cb374.ngrok-free.app/api/products', data);
+    const response = await axios.post(`${uri}p/api/products`, data);
     return response.data;
 };
 

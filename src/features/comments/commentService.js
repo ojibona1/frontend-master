@@ -1,8 +1,9 @@
 import axios from 'axios'
+import uri from '../config'
 
 const sendComment = async(data)=>{
 
-    const response = await axios.post('https://573e523cb374.ngrok-free.app/api/comment', data)
+    const response = await axios.post(`${uri}/api/comment`, data)
 
     return response.data
 }

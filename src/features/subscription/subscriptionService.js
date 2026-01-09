@@ -1,8 +1,8 @@
 import axios from 'axios'
-
+import uri from '../config'
 
 const subscribe = async(data)=>{
-    const response = await axios.post('https://573e523cb374.ngrok-free.app/api/subscribe', data)
+    const response = await axios.post(`${uri}/api/subscribe`, data)
 
     return response.data
 }
