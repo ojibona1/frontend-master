@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Welcome from './Welcome'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaSearch, FaShoppingBag, FaUserAlt, FaSignOutAlt } from 'react-icons/fa'

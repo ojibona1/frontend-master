@@ -42,6 +42,7 @@ const productSlice = createSlice({
         .addCase(getProducts.fulfilled, (state, action)=>{
             state.isError = false;
             state.isLoading = false;
+            state.isSuccess = true;
             state.products = action.payload
         })
     }

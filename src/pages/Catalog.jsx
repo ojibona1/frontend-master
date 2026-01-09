@@ -15,8 +15,12 @@ function Catalog() {
         return state.products
     })
 
+
     useEffect(() => {
         dispatch(getProducts());
+        return () => {
+            dispatch(reset());
+        }
     }, []);
 
     return (
@@ -47,7 +51,7 @@ function Catalog() {
                 </div>
                 <div className="w-full flex flex-col justify-center items-center py-8">
                     <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 justify-items-center">
-                        {isLoading && <span><Loader/></span>}
+                        {isLoading && <span><Loader /></span>}
                         {isError && <span className="text-red-500">{message}</span>}
                         {!isLoading && !isError && products.data && products.data.length > 0 ? (
                             products.data.map((product) => (
