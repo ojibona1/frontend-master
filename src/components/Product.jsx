@@ -29,9 +29,12 @@ function Product({ product }) {
   }
 
   return (
-    <div className='flex flex-col items-center w-full ]'>
+    <div className='flex flex-col items-center w-full '>
       <div className="product-card bg-white rounded-lg shadow-md p-4 flex flex-col items-center justify-center w-full max-w-xs m-2 transition-transform hover:scale-105 h-[300px]">
-        <div className=' flex flex-col items-center justify-center'>
+        <div className=''>
+          <div className='w-50px h-70px'></div>
+        </div>
+        <div className=' flex flex-col items-center justify-end '>
           <div className='w-full flex items-center justify-between mb-2'>
             <span className='text-xs'>{product.name}</span>
             <span className="text-purple-700 font-bold text-xs ">${product.price}</span>
