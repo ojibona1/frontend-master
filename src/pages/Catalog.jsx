@@ -5,23 +5,45 @@ import { reset, getProducts } from '../features/products/productSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import Product from '../components/Product'
 import Loader from '../components/Loader'
+import { getCart } from '../features/cart/cartSlice'
 
 function Catalog() {
     const [sortBy, setSortBy] = React.useState('best-selling')
-
-    const dispatch = useDispatch();
+    const [visibleProducts, setVisibleProducts] = React.useState(6)
 
     const { products, isError, message, isLoading } = useSelector((state) => {
         return state.products
     })
 
+    const { cart } = useSelector((state) => {
+        return state.cart
+    })
+
+    const email = useSelector((state) => state.auth.user?.data?.email);
+    // Calculate items per row based on screen size
+    const getItemsPerRow = () => {
+        if (typeof window !== 'undefined') {
+            if (window.innerWidth >= 768) return 6; // md and up
+            return 4; // sm and below
+        }
+        return 4;
+    };
+
+    // Calculate how many rows fit without scrolling (approximate viewport height)
+    const getInitialVisibleCount = () => {
+        const itemsPerRow = getItemsPerRow();
+        const viewportHeight = window.innerHeight || 800;
+        const estimatedRowHeight = 350; // Approximate height of a product card with spacing
+        const headerHeight = 300; // Approximate height of header and spacing
+        const availableHeight = viewportHeight - headerHeight;
+        const rowsThatFit = Math.floor(availableHeight / estimatedRowHeight) || 1;
+        return Math.max(itemsPerRow, rowsThatFit * itemsPerRow);
+    };
 
     useEffect(() => {
-        dispatch(getProducts());
-        return () => {
-            dispatch(reset());
-        }
+        setVisibleProducts(getInitialVisibleCount());
     }, []);
+
 
     return (
         <div className="min-h-screen bg-gray-50 py-12 px-4">
@@ -50,17 +72,25 @@ function Catalog() {
                     <p className="text-gray-500">{products?.data?.length} product{products?.data?.length > 1 ? 's' : ''}</p>
                 </div>
                 <div className="w-full flex flex-col justify-center items-center py-8">
-                    <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 justify-items-center">
+                    <div className="w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-1 justify-items-center">
                         {isLoading && <span><Loader /></span>}
                         {isError && <span className="text-red-500">{message}</span>}
                         {!isLoading && !isError && products.data && products.data.length > 0 ? (
-                            products.data.map((product) => (
-                                <Product key={product._id || product.id} product={product} />
+                            products.data.slice(0, visibleProducts).map((product) => (
+                                <Product key={product._id || product.id} product={product} cart={cart} />
                             ))
                         ) : (!isLoading && !isError && (
                             <span className="text-lg text-gray-700 text-center col-span-full">No products found <br /> Use fewer filters or <Link to='/catalog' className="text-purple-600 hover:underline">remove all</Link></span>
                         ))}
                     </div>
+                    {!isLoading && !isError && products.data && visibleProducts < products.data.length && (
+                        <button
+                            onClick={() => setVisibleProducts(visibleProducts + (getItemsPerRow() * 5))}
+                            className="mt-8 px-6 py-3 border text-purple-700 border-purple-700 font-semibold rounded-lg hover:bg-purple-700 hover:text-white transition-colors text-sm"
+                        >
+                            Show {products.data.length - visibleProducts} More
+                        </button>
+                    )}
                 </div>
             </div>
             {/* filter-modal placeholder */}

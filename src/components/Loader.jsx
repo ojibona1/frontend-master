@@ -1,8 +1,8 @@
 import { FaSpinner } from "react-icons/fa";
 import '../assets/loader.css'
 
-function Loader() {
-  return <FaSpinner className="spinner" />;
+function Loader({size}) {
+  return <FaSpinner className={`spinner ${size}`} />;
 }
 
 export default Loader

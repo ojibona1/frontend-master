@@ -27,12 +27,12 @@ function Cart() {
 
   const dispatch = useDispatch();
 
-  const email = useSelector((state) => state.auth.user?.data?.email);
-
 
   const [cartItems, setCartItems] = useState([]);
 
   const { cart, isLoading, isSuccess, isError } = useSelector((state) => state.cart);
+
+  const email = useSelector((state) => state.auth.user?.data?.email);
 
   const handleRemoveFromCart = useCallback((item) => {
     // Optimistically update UI
@@ -53,16 +53,6 @@ function Cart() {
     }
   }, [isError]);
 
-
-
-  useEffect(() => {
-    if (email) {
-      dispatch(getCart({ email }));
-    }
-    return () => {
-      dispatch(reset());
-    }
-  }, [email, dispatch]);
 
 
   return (

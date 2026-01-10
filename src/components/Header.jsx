@@ -31,7 +31,7 @@ function Header() {
     <>
       <Welcome />
       <header className="bg-white shadow-md w-full sticky top-0 z-20 border-b border-gray-200">
-        <ul className="flex items-center justify-start py-4 w-full">
+        <ul className="flex items-center justify-start py-1 w-full">
           <span className="font-bold text-2xl text-gray-900 tracking-wide">LOGO</span>
           <div className="hidden md:flex gap-10 text-gray-700 font-semibold">
             <Link to='/' className={`hover:text-purple-600 transition-colors duration-200 ${location.pathname === '/' ? 'text-purple-600' : ''}`}>Home</Link>
